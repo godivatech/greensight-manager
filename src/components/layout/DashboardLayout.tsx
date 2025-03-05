@@ -1,11 +1,14 @@
 
-import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useState, ReactNode } from 'react';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
 import { cn } from '@/lib/utils';
 
-const DashboardLayout: React.FC = () => {
+interface DashboardLayoutProps {
+  children: ReactNode;
+}
+
+const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
@@ -18,8 +21,8 @@ const DashboardLayout: React.FC = () => {
         )}
       >
         <Navbar />
-        <main className="flex-1 p-4 md:p-6">
-          <Outlet />
+        <main className="flex-1">
+          {children}
         </main>
       </div>
     </div>
